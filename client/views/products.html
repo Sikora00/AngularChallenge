@@ -1,0 +1,99 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Add product
+</button>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" class="form-horizontal" onsubmit="return false;">
+
+
+
+                    <label class="sr-only">productCode</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"
+                           placeholder="productCode" ng-model="productCode">
+
+                    <label class="sr-only" >productName</label>
+                    <input type="text" class="form-control" id="productName" placeholder="productName" ng-model="productName">{{productName}}
+
+                    <label class="sr-only">productLine</label>
+                    <input type="text" class="form-control" id="productLine" placeholder="productLine" ng-model="productLine">
+
+                    <label class="sr-only">productScale</label>
+                    <input type="text" class="form-control" id="productScale" placeholder="productScale" ng-model="productScale">
+
+                    <label class="sr-only" for="productVendor">productVendor</label>
+                    <input type="text" class="form-control" id="productVendor" placeholder="productVendor" ng-model="productVendor">
+
+                    <label class="sr-only" for="productDescription">productDescription</label>
+                    <input type="text" class="form-control" id="productDescription" placeholder="productDescription" ng-model="productDescription">
+
+                    <label class="sr-only" for="quantityInStock">quantityInStock</label>
+                    <input type="text" class="form-control" id="quantityInStock" placeholder="quantityInStock" ng-model="quantityInStock">
+
+                    <label class="sr-only" for="buyPrice">buyPrice</label>
+                    <input type="text" class="form-control" id="buyPrice" placeholder="buyPrice" ng-model="buyPrice">
+
+                    <label class="sr-only" for="MSRP">MSRP</label>
+                    <input type="text" class="form-control" id="MSRP" placeholder="MSRP" ng-model="MSRP">
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="insert()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-hover table-condensed">
+    <thead>
+    <tr>
+        <th>productCode</th>
+        <th>productName</th>
+        <th>productLine</th>
+        <th>productScale</th>
+        <th>productVendor</th>
+        <th>productDescription</th>
+        <th>quantityInStock</th>
+        <th>buyPrice</th>
+        <th>MSRP</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="x in names">
+
+        <td>{{ x.productCode }}</td>
+        <td>{{ x.productName }}</td>
+        <td>{{ x.productLine }}</td>
+        <td>{{ x.productScale }}</td>
+        <td>{{ x.productVendor }}</td>
+        <td>{{ x.productDescription }}</td>
+        <td>{{ x.quantityInStock }}</td>
+        <td>{{ x.buyPrice }}</td>
+        <td>{{ x.MSRP }}</td>
+        <td>
+            <button class="btn btn-success" data-toggle="modal"  data-target="#myModal" ng-click="update(x.productCode, x.productName, x.productLine, x.productScale, x.productVendor, x.productDescription, x.quantityInStock, x.buyPrice, x.MSRP)">Edytuj
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-danger" ng-click="delete(x.productCode)">Usuń</button>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
