@@ -23,9 +23,12 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', function ($l
 }]);
 
 app.controller('controller', function ($scope, $http) {
-    $scope.get = function () {
 
-        $http.get("http://server.dev/php/get.php")
+    //link do katalogu server
+    $scope.server = "http://server.dev/php";
+
+    $scope.get = function () {
+        $http.get($scope.server + "/get.php")
             .then(function (response) {
                 $scope.names = response.data.records;
             });
@@ -36,7 +39,7 @@ app.controller('controller', function ($scope, $http) {
     $scope.delete = function (id) {
         $http({
             method: "post",
-            url: "http://server.dev/php/delete.php",
+            url: $scope.server + "/delete.php",
             data: {
                 id: id
             },
@@ -55,7 +58,7 @@ app.controller('controller', function ($scope, $http) {
     $scope.insert = function () {
         $http({
             method: "post",
-            url: "http://server.dev/php/post.php",
+            url: $scope.server + "/post.php",
             data: {
                 productCode: $scope.product.Code,
                 productName: $scope.product.Name,
@@ -92,7 +95,7 @@ app.controller('controller', function ($scope, $http) {
     $scope.edytuj = function () {
         $http({
             method: "post",
-            url: "http://server.dev/php/edytuj.php",
+            url: $scope.server + "/edytuj.php",
             data: {
                 productCode: $scope.product.Code,
                 productName: $scope.product.Name,
