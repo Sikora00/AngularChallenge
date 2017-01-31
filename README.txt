@@ -72,19 +72,6 @@ ________________________________________________________________________________
 
 
 Do uruchomienia aplikacji potrzebny jest serwer http ( Apache,Nginx lub inny). Po sklonowaniu aplikacji należy pobrać potrzebne biblioteki. Aby to zrobić trzeba skorzystać z narzędzia „bower”. Opis instalacji znajdziemy pod adresem: http://bower.io/#install-bower Po instalacji narzędzia przechodzimy do katalogu ‘client’ i z linii komend wykonujemy polecenie: $ bower update To polecenie pobierze nam potrzebne biblioteki do uruchomienia aplikacji. Pobrane biblioteki znajdują się w katalogu 'vendor'. Jeśli chcemy dodać kolejną bibliotekę aktualizujemy plik 'bower.json' a następnie wykonujemy polecenie: $ bower update.
+Skrypty w folderze server powinny być wykonywane w domenie http://server.dev
 
 
-
-###############################
-#### Przesłanie aplikacji: ####
-###############################
-
-
-Prosimy o przesłanie gotowej aplikacji w formie paczki .zip pod adres e-mail wskazany w rekrutacji. Prosimy o nie dołączanie do aplikacji katalogu vendor.
-Najlepszym sposobem na przesłanie aplikacji będzie umieszczenie jej w repozytorium GIT (GitHub, Bitbucket) a następnie przesłanie linka z możliwością
-sklonowania aplikacji pod wskazany wcześniej adres e-mail
-
-___________________________________________________________________________________________________________________________
-
-
-Powodzenia!
