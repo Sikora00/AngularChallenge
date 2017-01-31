@@ -19,34 +19,34 @@
 
                     <label class="sr-only">productCode</label>
                     <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"
-                           placeholder="productCode" ng-model="productCode">
+                           placeholder="productCode" ng-model="product.Code">
 
                     <label class="sr-only" >productName</label>
-                    <input type="text" class="form-control" id="productName" placeholder="productName" ng-model="productName">{{productName}}
+                    <input type="text" class="form-control" id="Name" placeholder="productName" ng-model="product.Name">{{Name}}
 
                     <label class="sr-only">productLine</label>
-                    <input type="text" class="form-control" id="productLine" placeholder="productLine" ng-model="productLine">
+                    <input type="text" class="form-control" id="productLine" placeholder="productLine" ng-model="product.Line">
 
                     <label class="sr-only">productScale</label>
-                    <input type="text" class="form-control" id="productScale" placeholder="productScale" ng-model="productScale">
+                    <input type="text" class="form-control" id="productScale" placeholder="productScale" ng-model="product.Scale">
 
                     <label class="sr-only" for="productVendor">productVendor</label>
-                    <input type="text" class="form-control" id="productVendor" placeholder="productVendor" ng-model="productVendor">
+                    <input type="text" class="form-control" id="productVendor" placeholder="productVendor" ng-model="product.Vendor">
 
                     <label class="sr-only" for="productDescription">productDescription</label>
-                    <input type="text" class="form-control" id="productDescription" placeholder="productDescription" ng-model="productDescription">
+                    <input type="text" class="form-control" id="productDescription" placeholder="productDescription" ng-model="product.Description">
 
                     <label class="sr-only" for="quantityInStock">quantityInStock</label>
-                    <input type="text" class="form-control" id="quantityInStock" placeholder="quantityInStock" ng-model="quantityInStock">
+                    <input type="text" class="form-control" id="quantityInStock" placeholder="quantityInStock" ng-model="product.InStock">
 
                     <label class="sr-only" for="buyPrice">buyPrice</label>
-                    <input type="text" class="form-control" id="buyPrice" placeholder="buyPrice" ng-model="buyPrice">
+                    <input type="text" class="form-control" id="buyPrice" placeholder="buyPrice" ng-model="product.Price">
 
                     <label class="sr-only" for="MSRP">MSRP</label>
-                    <input type="text" class="form-control" id="MSRP" placeholder="MSRP" ng-model="MSRP">
+                    <input type="text" class="form-control" id="MSRP" placeholder="MSRP" ng-model="product.MSRP2">
 
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" ng-click="edytuj()">Edytuj</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -56,7 +56,6 @@
         </div>
     </div>
 </div>
-
 
 <table class="table table-hover table-condensed">
     <thead>
@@ -97,3 +96,4 @@
     </tr>
     </tbody>
 </table>
+{{2+2}}
