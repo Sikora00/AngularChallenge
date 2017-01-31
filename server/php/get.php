@@ -1,11 +1,6 @@
 
 <?php
-header('Access-Control-Allow-Origin: *');
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "classicmodels";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+include "connect.php";
 if(!$conn){
     die("Connection failed: " .mysqli_connecet_error());}
 $showData = "SELECT * FROM products";
