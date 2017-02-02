@@ -1,4 +1,16 @@
-var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap']);
+var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap', 'ui.bootstrap', 'jcs-autoValidate']) .run([
+    'bootstrap3ElementModifier',
+    function (bootstrap3ElementModifier) {
+        bootstrap3ElementModifier.enableValidationStateIcons(true)
+    }]);
+
+app.run(function (defaultErrorMessageResolver) {
+        defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
+            errorMessages['badScale'] = 'Skala musi być postaci 1:liczba';
+        });
+    }
+);
+
 
 app.value('app-version', '0.0.1');
 
@@ -25,26 +37,58 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', function ($l
 app.controller('controller', function ($scope, $http) {
 
     //link do katalogu server
-    $scope.server = "http://server.dev/php";
+    $scope.server = "http://server.dev/public";
+
+    $scope.product = {};
+
+    // paginacja
+    $scope.names = [];
+    $scope.currentPage = 1;
+    $scope.numPerPage = 10;
+    $scope.maxSize = 5;
+
+
+
+    $scope.$watch('product.Page', function () {
+        var begin = (($scope.product.Page - 1) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+        $scope.names = $scope.products.slice(begin, end);
+    });
+
+
+
+    $scope.getLines = function () {
+        $http.get($scope.server + "/getLines")
+            .then(function (response) {
+                $scope.Lines = [];
+                $scope.Lines = response.data;
+            });
+    };
+    $scope.getLines();
+
 
     $scope.get = function () {
-        $http.get($scope.server + "/get.php")
+        $http.get($scope.server + "/get")
             .then(function (response) {
-                $scope.names = response.data.records;
+                $scope.products = [];
+                $scope.products = response.data;
+                $scope.names = $scope.products.slice(0, $scope.numPerPage);
             });
     };
 
     $scope.get();
 
+
     $scope.delete = function (id) {
         $http({
             method: "post",
-            url: $scope.server + "/delete.php",
+            url: $scope.server + "/delete",
             data: {
                 id: id
             },
-            dataType: 'json',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            dataType: 'json'
         }).success(function () {
             $scope.get();
         }).error(function () {
@@ -58,7 +102,7 @@ app.controller('controller', function ($scope, $http) {
     $scope.insert = function () {
         $http({
             method: "post",
-            url: $scope.server + "/post.php",
+            url: $scope.server + "/post",
             data: {
                 productCode: $scope.product.Code,
                 productName: $scope.product.Name,
@@ -95,7 +139,7 @@ app.controller('controller', function ($scope, $http) {
     $scope.edytuj = function () {
         $http({
             method: "post",
-            url: $scope.server + "/edytuj.php",
+            url: $scope.server + "/edytuj",
             data: {
                 productCode: $scope.product.Code,
                 productName: $scope.product.Name,

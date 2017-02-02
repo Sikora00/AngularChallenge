@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-Dodaj produkt
+    Dodaj produkt
 </button>
 
 <!-- Modal -->
@@ -13,50 +13,94 @@ Dodaj produkt
                 <h4 class="modal-title" id="myModalLabel">Formularz dodawania/edytowania produktów</h4>
             </div>
             <div class="modal-body">
-                <form action="#" method="post" class="form-inline" onsubmit="return false;">
 
 
+                <form ng-submit="onSubmit()"
+                      novalidate="novalidate">
 
-                    <label class="sr-only">productCode</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"
-                           placeholder="productCode" ng-model="product.Code">
+                    <div class="form-group">
+                        <label class="sr-only">productCode</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"
+                               placeholder="productCode" ng-model="product.Code" ng-minlength="3" required="required">
+                    </div>
 
-                    <label class="sr-only" >productName</label>
-                    <input type="text" class="form-control" id="Name" placeholder="productName" ng-model="product.Name">{{Name}}
+                    <div class="form-group">
+                        <label class="sr-only">productName</label>
+                        <input type="text" class="form-control" id="Name" placeholder="productName"
+                               ng-model="product.Name" required="required">{{Name}}
+                    </div>
 
-                    <label class="sr-only">productLine</label>
-                    <input type="text" class="form-control" id="productLine" placeholder="productLine" ng-model="product.Line">
-
-                    <label class="sr-only">productScale</label>
-                    <input type="text" class="form-control" id="productScale" placeholder="productScale" ng-model="product.Scale">
-
-                    <label class="sr-only" for="productVendor">productVendor</label>
-                    <input type="text" class="form-control" id="productVendor" placeholder="productVendor" ng-model="product.Vendor">
-
-                    <label class="sr-only" for="productDescription">productDescription</label>
-                    <input type="text" class="form-control" id="productDescription" placeholder="productDescription" ng-model="product.Description">
-
-                    <label class="sr-only" for="quantityInStock">quantityInStock</label>
-                    <input type="text" class="form-control" id="quantityInStock" placeholder="quantityInStock" ng-model="product.InStock">
-
-                    <label class="sr-only" for="buyPrice">buyPrice</label>
-                    <input type="text" class="form-control" id="buyPrice" placeholder="buyPrice" ng-model="product.Price">
-
-                    <label class="sr-only" for="MSRP">MSRP</label>
-                    <input type="text" class="form-control" id="MSRP" placeholder="MSRP" ng-model="product.MSRP2">
+                    <div class="form-group" >
+                        <label class="sr-only">productLine</label>
+                        <select id="productLine"
+                                class="form-control"
+                                ng-model="product.Line"
+                                required="required" >
+                            <option value="" >productLine</option >
+                            <option ng-repeat="Line in Lines" value="{{Line.productLine}}">{{Line.productLine}}</option>
+                        </select >
+                    </div >
 
 
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="insert()">Add</button>
-                <button type="submit" class="btn btn-primary" ng-click="edytuj()">Edytuj</button>
+                    <div class="form-group">
+                        <label class="sr-only">productScale</label>
+                        <input type="text" class="form-control" id="productScale" placeholder="productScale"
+                               ng-model="product.Scale" required="required" ng-pattern="/1:(?:\d*\.)?\d+/" ng-pattern-err-type="badScale">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="productVendor">productVendor</label>
+                        <input type="text" class="form-control" id="productVendor" placeholder="productVendor"
+                               ng-model="product.Vendor" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="productDescription">productDescription</label>
+                        <input type="text" class="form-control" id="productDescription" placeholder="productDescription"
+                               ng-model="product.Description" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="quantityInStock">quantityInStock</label>
+                        <input type="number" class="form-control" id="quantityInStock" placeholder="quantityInStock"
+                               ng-model="product.InStock" required="required" min="0"  ng-pattern="/(?:\d*\.)?\d+/" >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="buyPrice">buyPrice</label>
+                        <input type="number" step="0.01" class="form-control" id="buyPrice" placeholder="buyPrice"
+                               ng-model="product.Price" required="required" min="0"  ng-pattern="/(?:\d*\.)?\d+/" >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="MSRP">MSRP</label>
+                        <input type="text" class="form-control" id="MSRP" placeholder="MSRP" ng-model="product.MSRP2" ng-pattern="/(?:\d*\.)?\d+/" required="required" min="0">
+                    </div>
+                    
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" ng-click="insert()">Add</button>
+                        <button type="button" class="btn btn-primary" ng-click="edytuj()">Edytuj</button>
+
+                    </div>
+            </form>
 
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+<pagination
+        ng-model="product.Page"
+        ng-click="pagination()"
+        total-items="products.length"
+        max-size="maxSize"
+        boundary-links="true">
+</pagination>
 
 <table class="table table-hover table-condensed">
     <thead>
@@ -87,7 +131,9 @@ Dodaj produkt
         <td>{{ x.buyPrice }}</td>
         <td>{{ x.MSRP }}</td>
         <td>
-            <button class="btn btn-success" data-toggle="modal"  data-target="#myModal" ng-click="update(x.productCode, x.productName, x.productLine, x.productScale, x.productVendor, x.productDescription, x.quantityInStock, x.buyPrice, x.MSRP)">Edytuj
+            <button class="btn btn-success" data-toggle="modal" data-target="#myModal"
+                    ng-click="update(x.productCode, x.productName, x.productLine, x.productScale, x.productVendor, x.productDescription, x.quantityInStock, x.buyPrice, x.MSRP)">
+                Edytuj
             </button>
         </td>
         <td>
