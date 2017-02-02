@@ -30,22 +30,23 @@
                                ng-model="product.Name" required="required">{{Name}}
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <label class="sr-only">productLine</label>
                         <select id="productLine"
                                 class="form-control"
                                 ng-model="product.Line"
-                                required="required" >
-                            <option value="" >productLine</option >
+                                required="required">
+                            <option value="">productLine</option>
                             <option ng-repeat="Line in Lines" value="{{Line.productLine}}">{{Line.productLine}}</option>
-                        </select >
-                    </div >
+                        </select>
+                    </div>
 
 
                     <div class="form-group">
                         <label class="sr-only">productScale</label>
                         <input type="text" class="form-control" id="productScale" placeholder="productScale"
-                               ng-model="product.Scale" required="required" ng-pattern="/1:(?:\d*\.)?\d+/" ng-pattern-err-type="badScale">
+                               ng-model="product.Scale" required="required" ng-pattern="/1:(?:\d*\.)?\d+/"
+                               ng-pattern-err-type="badScale">
                     </div>
 
                     <div class="form-group">
@@ -63,20 +64,21 @@
                     <div class="form-group">
                         <label class="sr-only" for="quantityInStock">quantityInStock</label>
                         <input type="number" class="form-control" id="quantityInStock" placeholder="quantityInStock"
-                               ng-model="product.InStock" required="required" min="0"  ng-pattern="/(?:\d*\.)?\d+/" >
+                               ng-model="product.InStock" required="required" min="0" ng-pattern="/(?:\d*\.)?\d+/">
                     </div>
 
                     <div class="form-group">
                         <label class="sr-only" for="buyPrice">buyPrice</label>
                         <input type="number" step="0.01" class="form-control" id="buyPrice" placeholder="buyPrice"
-                               ng-model="product.Price" required="required" min="0"  ng-pattern="/(?:\d*\.)?\d+/" >
+                               ng-model="product.Price" required="required" min="0" ng-pattern="/(?:\d*\.)?\d+/">
                     </div>
 
                     <div class="form-group">
                         <label class="sr-only" for="MSRP">MSRP</label>
-                        <input type="text" class="form-control" id="MSRP" placeholder="MSRP" ng-model="product.MSRP2" ng-pattern="/(?:\d*\.)?\d+/" required="required" min="0">
+                        <input type="text" class="form-control" id="MSRP" placeholder="MSRP" ng-model="product.MSRP2"
+                               ng-pattern="/(?:\d*\.)?\d+/" required="required" min="0">
                     </div>
-                    
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -84,14 +86,12 @@
                         <button type="button" class="btn btn-primary" ng-click="edytuj()">Edytuj</button>
 
                     </div>
-            </form>
+                </form>
 
             </div>
         </div>
     </div>
 </div>
-
-
 
 
 <pagination

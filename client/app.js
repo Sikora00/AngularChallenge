@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap', 'ui.bootstrap', 'jcs-autoValidate']) .run([
+var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap', 'ui.bootstrap', 'jcs-autoValidate']).run([
     'bootstrap3ElementModifier',
     function (bootstrap3ElementModifier) {
         bootstrap3ElementModifier.enableValidationStateIcons(true)
@@ -48,7 +48,6 @@ app.controller('controller', function ($scope, $http) {
     $scope.maxSize = 5;
 
 
-
     $scope.$watch('product.Page', function () {
         var begin = (($scope.product.Page - 1) * $scope.numPerPage)
             , end = begin + $scope.numPerPage;
@@ -57,7 +56,7 @@ app.controller('controller', function ($scope, $http) {
     });
 
 
-
+    // pobieranie wartości do selecta w formularzu
     $scope.getLines = function () {
         $http.get($scope.server + "/getLines")
             .then(function (response) {
@@ -67,7 +66,7 @@ app.controller('controller', function ($scope, $http) {
     };
     $scope.getLines();
 
-
+    // funkcje wykonujące podstawowe operacje CRUD na rekordach tabeli.
     $scope.get = function () {
         $http.get($scope.server + "/get")
             .then(function (response) {
